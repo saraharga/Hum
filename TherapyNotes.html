@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hum - Therapy Notes</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <nav>
+    <img class="nav-logo" src="assets/hum_logo.png" width=200px>
+    <a style="background-color:#884477" href="TherapyNotes.html">Therapy Notes</a>
+    <a href="MusicTherapy.html"> Music Therapy</a>
+    <a href="Learn.html">Learn</a>
+  </nav>
+  
+  <body>
+    <main id="therapynotes-main">
+      <section id="notes">
+        <div id="above-notepad">
+          <span class="datetime"></span>
+          <button style="display: inline;" id="save" type="button">Save</button>
+        </div>
+        </br></br>
+        
+        <textarea id="notepad" rows="25"></textarea>
+        
+      </section>
+  
+      <section id="instructions-pastnotes">
+        <div id="instructions">
+          <h3>How to take notes:</h3>
+          
+          <p>It's a good idea to keep notes after every session to see a progress or find what songs and activities make them have specific reactions. You can also use the notes to notify your healthcare professional or doctor about the impact of these musical therapy sessions. When monitoring the individual and writing your notes consider: </p>
+
+          <p> The impact each song had, whether it was positive or negative, if there were any positive or negative tears, how awake the individual was while listening, the physical responses and movements, any verbal expression or comments they made, eye contact and changes in agitation and breathing. <p>
+        
+        </div>
+        
+        </br></br>
+        
+        <div id="past-notes">
+          <h3>Past notes:</h3>
+        
+          <p id="old-notes"></p>
+        </div>
+      </section>
+    </main>
+
+    <div class="bottomnav"><p>Meet the Creators behind Hum!</p><a href ="https://www.instagram.com/sarah.arga/">Sarah Arcipreste</a>
+    <a href="https://www.instagram.com/kim._.moses/">Kimberly Moses</a>
+    </div>
+        
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+      var datetimeview = $(".datetime");
+      
+      var today = new Date();
+      var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' | '+time;
+      
+      datetimeview.append(dateTime);
+      
+
+      var firebaseConfig = {
+        apiKey: "AIzaSyBGy3HZxeV5H9un-S3gB-kDk_EnA0WsPME",
+        authDomain: "hum-musictherapy.firebaseapp.com",
+        databaseURL: "https://hum-musictherapy-default-rtdb.firebaseio.com/",
+        projectId: "hum-musictherapy",
+        storageBucket: "hum-musictherapy.appspot.com",
+        messagingSenderId: "238180823920"
+      };
+      
+    firebase.initializeApp(firebaseConfig);
+
+      function writeUserData(uid, dateTime, note) {
+        firebase.database().ref('users/' + uid + "/" + dateTime).set({
+          note: note
+        });
+        window.location.href = "TherapyNotes.html";
+      }
+      
+      var userId = "";
+  
+      firebase.auth().onAuthStateChanged(function(user) {  
+        var user = firebase.auth().currentUser;
+        var database = firebase.database();
+  
+        // if user is signed in
+        if (user) {
+          userId = user.uid;
+          console.log(userId);
+
+          $("#save").click(function(){
+            var note = document.getElementById("notepad").value;
+            writeUserData(userId, dateTime, note);
+          });
+
+          
+          var dbRef = firebase.database().ref('users/' + userId);
+          dbRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            
+            var oldNotes = $("#old-notes");
+            
+            snapshot.forEach((childSnapshot) => {
+              var childKey = childSnapshot.key;
+              var childData = childSnapshot.val();
+              
+              oldNotes.append(`<p><span class="bold">${childKey}</span> : ${childData.note}</p>`);
+            });
+          });
+          
+        }
+      });
+     
+    </script>
+    
+  </body>
+</html>

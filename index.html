@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hum - Sign In</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      <img id="logo" src="assets/hum_logo.png">
+      
+      
+      
+      <div id="input">
+        <input id="email" type="email" placeholder="Email">
+        <input id="pw" type="password" placeholder="Password">
+      </div>
+      
+      <div id="buttons">
+        <button id="signup">Sign Up</button>
+        <button id="login">Log In</button>
+      </div>
+  
+      <div id="blobs">
+        <div id="about">
+          <h4>About Hum</h4>
+          <p>Hum is a web app that helps individuals guide a musical therapy session to help a family member or friend battling with Alzheimer's disease. Our program designs specific sessions based on the user's preferences and works as a tool so everyone can introduce this type of therapy to anyone struggling, letting them enjoy all the benefits musical therapy has to offer. </p>
+        </div>
+  
+        <div id="mission">
+          <h4>Our Mission</h4>
+          <p>Our mission is to help bridge the gap in medical services by making music therapy accessible to everyone, give personalised recommendations and provide the benefits of music therapy and relevant background information.</p>
+        </div>
+  
+        <div id="importance">
+          <h4>The Importance</h4>
+          <p> Research suggests that listening to or singing songs can provide emotional and behavioral benefits for people with Alzheimer's disease, since musical memories are often preserved because key brain areas linked to musical memory are relatively undamaged by the disease. </p>
+        </div>
+      </div>
+    </main>
+
+    <div class="bottomnav"><p>Meet the Creators behind Hum!</p><a href ="https://www.instagram.com/sarah.arga/">Sarah Arcipreste</a>
+    <a href="https://www.instagram.com/kim._.moses/">Kimberly Moses</a>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script>
+    
+      var firebaseConfig = {
+        apiKey: "AIzaSyBGy3HZxeV5H9un-S3gB-kDk_EnA0WsPME",
+        authDomain: "hum-musictherapy.firebaseapp.com",
+        databaseURL: "https://hum-musictherapy-default-rtdb.firebaseio.com/",
+        projectId: "hum-musictherapy",
+        storageBucket: "hum-musictherapy.appspot.com",
+        messagingSenderId: "238180823920"
+      };
+      
+      firebase.initializeApp(firebaseConfig);
+  
+      // Sign up - Authentication done with Firebase
+      $("#signup").click(function(){
+        var email = $("#email").val();
+        var pw = $("#pw").val();
+        firebase.auth().createUserWithEmailAndPassword(email, pw);
+        console.log("acct created");
+      });
+        
+      $("#login").click(function(){
+        var email = $("#email").val();
+        var pw = $("#pw").val();
+        firebase.auth().signInWithEmailAndPassword(email, pw);
+        console.log("acct signed in");
+      });
+  
+        firebase.auth().onAuthStateChanged(function(user)    {  
+        var user = firebase.auth().currentUser;
+        var database = firebase.database();
+  
+        // if user is signed in
+        if (user) {
+          var email = user.email;
+          var uid = user.uid;
+      
+          console.log(uid);
+          console.log(email);
+      
+          window.location.href = "TherapyNotes.html";
+        } else {
+          // user not signed in
+        }
+      
+      });
+      
+    </script>
+  </body>
+</html>

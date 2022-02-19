@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hum - Music Therapy</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <nav>
+    <img class="nav-logo" src="assets/hum_logo.png" width=200px>
+    <a href="TherapyNotes.html">Therapy Notes</a>
+    <a style="background-color:#884477" href="MusicTherapy.html"> Music Therapy</a>
+    <a href="Learn.html">Learn</a>
+  </nav>
+  
+  <body>
+    <main>
+
+      <!-- <h2>Instructions:</h2>
+      <ol>
+        <li>Press "Run"</li>
+        <li>Answer the questions using the letter corresponding to the option you wish to choose</li>
+        <li>Copy the generated playlist link and paste in the input field below</li>
+        <li>Press the "Enter" button. You will see the playlist appear on screen</li>
+        <li>Ensure the individual and the environment is ready for this session</li>
+        <li>Press the play button in Spotify</li>
+      </ol> -->
+      
+      <!-- Embed python program here -->
+      <iframe src="https://trinket.io/embed/python/61d8b704e8?outputOnly=true&runOption=run" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+      <div id="input">
+        <input id="link" type="url" placeholder="Playlist Link">
+      </div>
+      
+      <div id="buttons">
+        <button style="margin-bottom: 10px" id="enter">Enter</button>
+      </div>
+
+      <iframe id="playlist-iframe" style="border-radius:12px" src="" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+      <p id="error">Playlist not found. Did you paste the correct link?</p>
+
+    </main>
+
+    <div class="bottomnav"><p>Meet the Creators behind Hum!</p><a href ="https://www.instagram.com/sarah.arga/">Sarah Arcipreste</a>
+    <a href="https://www.instagram.com/kim._.moses/">Kimberly Moses</a>
+    </div>
+    
+    <script src="script.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script>
+      document.getElementById('playlist-iframe').style.display = "none";
+      document.getElementById('error').style.display = "none";
+      
+      $("#enter").click(function(){
+        var playlistLink = $("#link").val();
+        
+        console.log(playlistLink);
+        var embedLink = "";
+
+        if (playlistLink == "https://open.spotify.com/playlist/1EcHAq1G7Ck7LDJCvhvnZp?si=2598drUnRSyEQ95r21mp8g&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/1EcHAq1G7Ck7LDJCvhvnZp?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/2RPWLJpKysfRIE2eSKgliq?si=UVr4wRpGQRy3AI1PfrdKPw&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/2RPWLJpKysfRIE2eSKgliq?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/3eO1pdmND4PWZ1fHm6qSbw?si=-0JDI16JSNmLa_N_uNxmbg&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/3eO1pdmND4PWZ1fHm6qSbw?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/0VCvLh2HCHnUTJypKii6RC?si=psb0cLlTTA2XezT8M6w-_Q&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/0VCvLh2HCHnUTJypKii6RC?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/6Zs21tBy0zTn4djhq9Jyt5?si=WGRBV-i6R6qxxNGz05eKDA&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/6Zs21tBy0zTn4djhq9Jyt5?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/40rGjSMDysshfAEwMcQM1T?si=FqP2dpsDR96ScVmYi97SlA&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/40rGjSMDysshfAEwMcQM1T?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/3Yh81fFY593s0z5XAVFNvb?si=kB1UKJL3QO2r9AEJ_fmYNA&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/3Yh81fFY593s0z5XAVFNvb?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/7eM4J0JydOUYDiptFDsJfH?si=6Jk6UrV2SVWB0m_erxAGaA&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/7eM4J0JydOUYDiptFDsJfH?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/5yCJ2gGeDHyA8LURT3yoDV?si=eJ6cC1dCSyu7IRDeZqLYqw&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/5yCJ2gGeDHyA8LURT3yoDV?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/7h4cAaoPCnbaFe89ftEUSN?si=p38f3eeYQA63Qqec1qNWhg&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/7h4cAaoPCnbaFe89ftEUSN?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/0Ig9FVYvWa8Ct0TefSYFT0?si=W912ESP0SoyL1Zu8_oYPRA&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/0Ig9FVYvWa8Ct0TefSYFT0?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/4pyA0vldfpNzQ5PP0ogzVv?si=SGbvx7W8RbuzIJJKu4fQqw&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/4pyA0vldfpNzQ5PP0ogzVv?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/0cFkdWrYRnn2r9jdBvqZN1?si=T5cHVqHSRNmHaR8wafU50A&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/0cFkdWrYRnn2r9jdBvqZN1?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/29N0bKqnPa6m5BhoydGMCU?si=57ej0lgRRf-fpkykoVt04Q&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/29N0bKqnPa6m5BhoydGMCU?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/5G0MOJJUovSVeT0XGHigWg?si=0xkuZF-zSYinv_MBKEYi-Q&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/5G0MOJJUovSVeT0XGHigWg?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/4QCstwTlU26fWjR92RckMf?si=0v79j-uESpqXao99svpW5A&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/4QCstwTlU26fWjR92RckMf?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/3QihQwzzWKItoQyndfhJOw?si=QGxHYTONThWNvAKLZNtZCw&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/3QihQwzzWKItoQyndfhJOw?utm_source=generator";
+        } else if (playlistLink == "https://open.spotify.com/playlist/6tg9LreiBsYRrqc1LVCo4j?si=0omiaxXiTzmT1p7snAMUMw&utm_source=copy-link") {
+          embedLink = "https://open.spotify.com/embed/playlist/6tg9LreiBsYRrqc1LVCo4j?utm_source=generator";
+        } else {
+          embedLink = "invalid";
+        }
+
+        if (embedLink != "invalid"){
+          document.getElementById('playlist-iframe').src = embedLink;
+          document.getElementById('playlist-iframe').style.display = "block";
+        } else {
+          document.getElementById('error').style.display = "block";
+        }
+
+      });
+      
+    </script>
+  </body>
+</html>

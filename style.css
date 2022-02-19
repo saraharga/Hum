@@ -1,0 +1,191 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  /* background-color: #07979f; // For browsers that do not support gradients */
+  background: linear-gradient(white, #07979f);
+  background-attachment: fixed;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#logo {
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#email, #pw, #link {
+  display: block;
+  height: 40px;
+  width: 50%;
+  min-width: 300px;
+  padding-left: 10px;
+  border: 2px solid #8373a2;
+  border-radius: 5px;
+  margin: 30px auto 30px auto;
+}
+
+#signup, #login, #save, #enter {
+  padding: 10px;
+  color: white;
+  background: #884477;
+  width: 30%;
+  max-width: 250px;
+  min-width: 100px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#signup:hover, #login:hover, #save:hover {
+  cursor: pointer;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#blobs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#about, #mission, #importance {
+  /* background-image: url("assets/blob.png");
+  background-repeat: no-repeat;
+  background-size: auto; */
+  margin: 50px 10px 0 10px;
+  text-align: center;
+  background: #8373a2;
+  border-radius: 180px;
+  width: 33%;
+  padding: 10px 40px;
+  color: white;
+}
+
+
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: -40px;
+}
+
+nav a {
+  border-radius: 30px;
+  padding: 20px;
+  width: 120px;
+  text-decoration: none;
+  text-align: center;
+  background-color: #8373a2;
+  color: white;
+}
+
+main {
+  padding: 0 10%;
+}
+
+#therapynotes-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#above-notepad {
+  display: flex;
+  justify-content: space-between;
+  width: 82%;
+  margin-bottom: -10px;
+}
+
+.datetime {
+  display: inline;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  color: #a4a4a4;
+  font-size: 16px;
+}
+
+textarea {
+  width: 80%; 
+  overflow-y: auto;
+  padding: 5px;
+  border: 3px solid #8373a2;
+  border-radius: 10px;
+}
+
+#notes, #instructions-pastnotes {
+  width: 100%;
+}
+
+#instructions {
+  background-color: #884477;
+  height: 220px;
+}
+
+#past-notes {
+  background-color: #8373a2;
+  height: 220px;
+}
+
+#old-notes .bold{
+  font-weight: bold;
+}
+
+#instructions, #past-notes {
+  border-radius: 10px;
+  padding: 5px 20px;
+  color: white;
+  overflow-y: auto;
+}
+
+#notepad {
+  resize: none;
+  margin-right: 30px;
+}
+
+.learn h3 {
+  color: #055b5c;
+}
+
+.learn p, li {
+  color: #884477;
+  font-weight: 600;
+}
+
+
+.bottomnav {
+  background-color: #884477;
+  overflow: hidden;
+  //position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: 15px;
+}
+.bottomnav a {
+  float: left;
+  display:flex;
+  color: #FCF4E2;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.bottomnav p {
+  color: #FCF4E2;
+  padding-left: 5px;
+}
+
+.bottomnav a:hover {
+  background-color: #07979f;
+  color: #FCF4E2
+}
